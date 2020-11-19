@@ -31,12 +31,15 @@ public class WordList : MonoBehaviour
         S = this;
     }
 
-    // Start is called before the first frame update
-    void Start(){
+    
+    public void Init(){
         lines = wordListText.text.Split('\n');
         totalLines = lines.Length;
 
         StartCoroutine(ParseLines());
+    }
+    static public void INIT(){
+        S.Init();
     }
 
     //All coroutines have IEnumerator as return type
@@ -66,6 +69,8 @@ public class WordList : MonoBehaviour
                 longWordCount = longWords.Count;
                 wordCount = words.Count;
                 //this yields execution until next frame
+                
+                
                 yield return null;
 
                 //the yield will cause the execution of this method to wait
@@ -75,6 +80,8 @@ public class WordList : MonoBehaviour
 
         longWordCount = longWords.Count;
         wordCount = words.Count;
+
+        gameObject.SendMessage("WordListParseComplete");
     }
 
     static public List<string> GET_WORDS(){
