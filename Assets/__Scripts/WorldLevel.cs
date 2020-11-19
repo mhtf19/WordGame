@@ -26,4 +26,30 @@ public class WorldLevel{
         }
         return(dict);
     }
+
+    //checks if word can be spelled with the chars in level.charDict
+    public static bool CheckWordInLevel(string str, WorldLevel level){
+        Dictionary<char, int> counts = new Dictionary<char, int>();
+        for(int i = 0; i<str.Length; i++){
+            char c = str[i];
+            //if chardict contains char c
+            if(level.charDict.ContainsKey(c)){
+                //if counts doesnt already have char c as a key
+                if(!counts.ContainsKey(c)){
+                    counts.Add(c,1);
+                } else{
+                    counts[c]++;
+                }
+
+                if(counts[c] > level.charDict[c]){
+                    return false;
+                }
+            } else{
+                return false;
+
+            }
+            
+        }
+        return true;
+    }
 }
