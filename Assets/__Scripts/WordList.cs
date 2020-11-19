@@ -38,6 +38,7 @@ public class WordList : MonoBehaviour
 
         StartCoroutine(ParseLines());
     }
+    
     static public void INIT(){
         S.Init();
     }
