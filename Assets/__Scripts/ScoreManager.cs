@@ -25,10 +25,13 @@ public class ScoreManager : MonoBehaviour
 
     void Score(Wyrd wyrd, int combo){
         List<Vector2> pts = new List<Vector2>();
+
         Vector3 pt = wyrd.letters[0].transform.position;
         pt = Camera.main.WorldToViewportPoint(pt);
 
         pts.Add(pt);
+
+        pts.Add(scoreMidPoint);
 
         pts.Add(rectTrans.anchorMax);
 
