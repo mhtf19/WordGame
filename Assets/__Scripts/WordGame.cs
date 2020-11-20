@@ -138,7 +138,11 @@ public class WordGame : MonoBehaviour
 
                 pos.y -= (i%numRows)*letterSize;
 
+                lett.posImmediate = pos+Vector3.up*(20+i%numRows);
+
                 lett.pos = pos; //add more to this line later
+
+                lett.timeStart = Time.time + i*.05f;
 
                 go.transform.localScale = Vector3.one*letterSize;
 
@@ -170,7 +174,12 @@ public class WordGame : MonoBehaviour
             //set initial position of big letters below the screen
 
             pos = new Vector3(0, -100, 0);
+
+            lett.posImmediate = pos;
             lett.pos = pos; //will add code here later
+
+            lett.timeStart = Time.time + currLevel.subWords.Count*.05f;
+            lett.easingCurve = Easing.Sin+"-0.18";
 
             col = bigColorDim;
             lett.color = col;
