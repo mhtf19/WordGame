@@ -2,17 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wyrd : MonoBehaviour
+public class Wyrd
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public string str;
+    public List<Letter> letters = new List<Letter>();
+    public bool found = false;
+
+    //sets visibility of 3d text of each letter
+    public bool visible{
+        get{
+            if(letters.Count == 0) return false;
+            return(letters[0].visible);
+        }
+        set{
+            foreach(Letter l in letters){
+                l.visible = value;
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public Color color{
+        get{
+            if(letters.Count == 0) return(Color.black);
+            return letters[0].color;
+        }
+        set{
+            foreach(Letter l in letters){
+                l.color = value;
+            }
+        }
+    }
+
+    public void Add(Letter l){
+        letters.Add(l);
+        str += l.c.ToString();
     }
 }
