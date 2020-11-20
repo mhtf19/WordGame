@@ -257,7 +257,7 @@ public class WordGame : MonoBehaviour
                         ArrangeBigLetters();
                     }
 
-                    if(c == '\n' || c == 'r'){
+                    if(c == '\n' || c == '\r'){
                         CheckWord();
                     }
 

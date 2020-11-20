@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     static private ScoreManager S;
+    
     [Header("Set in Inspector")]
     public List<float> scoreFontSizes = new List<float> {36, 64, 64, 1};
     public Vector3 scoreMidPoint = new Vector3(1, 1, 0);
