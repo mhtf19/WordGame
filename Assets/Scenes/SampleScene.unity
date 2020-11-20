@@ -332,6 +332,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6746a3bf2c390e7438c43bc105ed8f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabLetter: {fileID: 2676609636572301016, guid: 830122a79e66e4a4aa57ab228c076218, type: 3}
+  wordArea:
+    serializedVersion: 2
+    x: -24
+    y: 19
+    width: 48
+    height: 28
+  letterSize: 1.5
+  showAllWyrds: 1
   mode: 0
   currLevel:
     levelNum: 0

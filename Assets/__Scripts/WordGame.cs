@@ -14,14 +14,25 @@ public enum GameMode {
 public class WordGame : MonoBehaviour
 {
     static public WordGame S;
+    [Header("Set in Inspector")]
+    public GameObject prefabLetter;
+    public Rect wordArea = new Rect(-24, 19,48, 28);
+    public float letterSize = 1.5f;
+    public bool showAllWyrds = true;
 
     [Header("Set Dynamically")]
     public GameMode mode = GameMode.preGame;
     public WordLevel currLevel;
+    public List<Wyrd> wyrds;
+
+    private Transform letterAnchor, bigLetterAnchor;
 
     void Awake(){
         S = this;
+        letterAnchor = new GameObject("LetterAnchor").transform;
+        bigLetterAnchor = new GameObject("BigLetterAnchor").transform;
     }
+
     // Start is called before the first frame update
     void Start(){
         mode = GameMode.loading;
@@ -81,6 +92,58 @@ public class WordGame : MonoBehaviour
 
     public void SubWordSearchComplete(){
         mode = GameMode.levelPrep;
+        Layout();
+    }
+
+    void Layout(){
+
+        wyrds = new List<Wyrd>();
+
+        GameObject go;
+        Letter lett;
+        string word;
+        Vector3 pos;
+        float left = 0;
+        float columnWidth = 3;
+        char c;
+        Color col;
+        Wyrd wyrd;
+
+        int numRows = Mathf.RoundToInt(wordArea.height/letterSize);
+
+        //make a Wyrd of each level.subWord
+        for(int i = 0; i<currLevel.subWords.Count; i++){
+            wyrd = new Wyrd();
+            word = currLevel.subWords[i];
+
+            columnWidth = Mathf.Max(columnWidth, word.Length);
+
+            for(int j = 0; j<word.Length; j++){
+                c = word[j];
+                go = Instantiate<GameObject>(prefabLetter);
+                go.transform.SetParent(letterAnchor);
+                lett = go.GetComponent<Letter>();
+                lett.c = c;
+
+                pos = new Vector3(wordArea.x+left+j*letterSize, wordArea.y, 0);
+
+                pos.y -= (i%numRows)*letterSize;
+
+                lett.pos = pos; //add more to this line later
+
+                go.transform.localScale = Vector3.one*letterSize;
+
+                wyrd.Add(lett);
+            }
+            if(showAllWyrds) wyrd.visible = true;
+
+            wyrds.Add(wyrd);
+
+            //adds new collumn if previous one is maxed
+            if(i%numRows == numRows-1){
+                left += (columnWidth+.5f) * letterSize;
+            }
+        }
     }
 
     // Update is called once per frame
