@@ -18,7 +18,7 @@ public class WordGame : MonoBehaviour
     public GameObject prefabLetter;
     public Rect wordArea = new Rect(-24, 19,48, 28);
     public float letterSize = 1.5f;
-    public bool showAllWyrds = true;
+    public bool showAllWyrds = false;
     public float bigLetterSize = 4f;
     public Color bigColorDim = new Color(.8f, .8f, .8f);
     public Color bigColorSelected = new Color(1f, .9f, .7f);
