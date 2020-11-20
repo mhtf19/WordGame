@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class WorldLevel{
+public class WordLevel{
 
     public int levelNum;
     public int longWordIndex;
@@ -12,6 +12,7 @@ public class WorldLevel{
     public Dictionary<char, int> charDict;
 
     public List<string> subWords;
+
 
     static public Dictionary<char, int> MakeCharDict(string w){
         Dictionary<char, int> dict = new Dictionary<char, int>();
@@ -28,7 +29,7 @@ public class WorldLevel{
     }
 
     //checks if word can be spelled with the chars in level.charDict
-    public static bool CheckWordInLevel(string str, WorldLevel level){
+    public static bool CheckWordInLevel(string str, WordLevel level){
         Dictionary<char, int> counts = new Dictionary<char, int>();
         for(int i = 0; i<str.Length; i++){
             char c = str[i];
@@ -53,3 +54,4 @@ public class WorldLevel{
         return true;
     }
 }
+
