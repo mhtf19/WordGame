@@ -319,7 +319,7 @@ public class WordGame : MonoBehaviour
             for(int i = 0; i<containedWords.Count; i++){
                 ndx = numContained -i-1;
                 HighlightWyrd(containedWords[ndx]);
-                if(containedWords[ndx].Length == PlayerPrefs.GetInt("GameType")){
+                if(testWord.Length == PlayerPrefs.GetInt("GameType")){
                     PlayerPrefs.SetInt("ShowNextLevelButton", 1);
                 }
                 ScoreManager.SCORE(wyrds[containedWords[ndx]], i+2);
