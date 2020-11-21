@@ -9,7 +9,6 @@ public class StartScreen : MonoBehaviour
     void Start()
     {
         PlayerPrefs.SetInt("CurrentScore", 0);
-        PlayerPrefs.SetInt("CurrentTotal", 0);
         if(!PlayerPrefs.HasKey("HighScore6")){
             PlayerPrefs.SetInt("HighScore6", 150);
         }
