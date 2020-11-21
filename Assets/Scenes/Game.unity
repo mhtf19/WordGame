@@ -715,6 +715,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scoreboard
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010030466190, guid: 19cec85269b9744ac9a379c2af612e47, type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 224000012587687706, guid: 19cec85269b9744ac9a379c2af612e47, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

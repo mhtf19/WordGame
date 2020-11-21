@@ -16,7 +16,7 @@ public class FloatingScore : MonoBehaviour {
     [Header("Set Dynamically")]
     public eFSState         state = eFSState.idle;
     [SerializeField]
-    private int             _score = 0;
+    private int             _score;
     public string           scoreString;
 
     // The score property sets both _score and scoreString 
@@ -25,8 +25,9 @@ public class FloatingScore : MonoBehaviour {
             return(_score); 
         }
         set {
-            _score = value;
-            scoreString = _score.ToString("N0"); // "N0" adds commas to the num
+            PlayerPrefs.SetInt("CurrentScore", value+PlayerPrefs.GetInt("CurrentScore"));
+            _score = PlayerPrefs.GetInt("CurrentScore");
+            scoreString = PlayerPrefs.GetInt("CurrentScore").ToString("N0"); // "N0" adds commas to the num
             // Search "C# Standard Numeric Format Strings" for ToString formats
             GetComponent<Text>().text = scoreString;
         }
@@ -44,6 +45,10 @@ public class FloatingScore : MonoBehaviour {
     private RectTransform   rectTrans;
     private Text            txt;
 
+    void Awake(){
+        _score = PlayerPrefs.GetInt("CurrentScore");
+        scoreString = PlayerPrefs.GetInt("CurrentScore").ToString("N0");
+    }
     // Set up the FloatingScore and movement
     // Note the use of parameter defaults for eTimeS & eTimeD
     public void Init(List<Vector2> ePts, float eTimeS = 0, float eTimeD = 1) {
