@@ -14,13 +14,14 @@ public class WordList : MonoBehaviour
     public TextAsset wordListText;
     public int numToParseBeforeYield = 1000;
     public int wordLengthMin = 3;
-    public int wordLengthMax = 7;
+    
 
     [Header("Set Dynamically")]
     public int currLine = 0;
     public int totalLines;
     public int longWordCount;
     public int wordCount;
+    public int wordLengthMax;
 
     //Private fields
     private string[] lines;
@@ -29,6 +30,15 @@ public class WordList : MonoBehaviour
 
     void Awake(){
         S = this;
+        if(!PlayerPrefs.HasKey("GameType")){
+            PlayerPrefs.SetInt("GameType", 7);
+            wordLengthMax = 7;
+        } else if(PlayerPrefs.GetInt("GameType") != 7 && PlayerPrefs.GetInt("GameType") != 6){
+            PlayerPrefs.SetInt("GameType", 7);
+            wordLengthMax = 7;
+        } else{
+            wordLengthMax = PlayerPrefs.GetInt("GameType");
+        }
     }
 
     
