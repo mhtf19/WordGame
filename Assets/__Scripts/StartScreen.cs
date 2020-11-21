@@ -9,6 +9,10 @@ public class StartScreen : MonoBehaviour
     void Start()
     {
         PlayerPrefs.SetInt("CurrentScore", 0);
+        PlayerPrefs.SetInt("CurrentTotal", 0);
+        if(!PlayerPrefs.HasKey("HighScore")){
+            PlayerPrefs.SetInt("HighScore", 150);
+        }
     }
 
     // Update is called once per frame
@@ -17,12 +21,12 @@ public class StartScreen : MonoBehaviour
         
     }
 
-    void On7Button(){
+    public void On7Button(){
         PlayerPrefs.SetInt("GameType", 7);
         SceneManager.LoadScene("Game");       
     }
 
-    void On6Button(){
+    public void On6Button(){
         PlayerPrefs.SetInt("GameType", 6);
         SceneManager.LoadScene("Game");
     }
